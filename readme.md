@@ -19,6 +19,8 @@
 <br/>
 
 </div>
+<img src="figs/visual_res1.png" alt="Framework" style="max-width: 100%; height: auto;"/>
+Framework of our proposed method.
 
 <img src="figs/overview.png" alt="Framework" style="max-width: 100%; height: auto;"/>
 Framework of our proposed method.
