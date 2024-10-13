@@ -22,8 +22,16 @@
 <img src="figs/visual_res1.png" alt="Framework" style="max-width: 100%; height: auto;"/>
 Prediction results of our proposed method.
 
-<img src="figs/overview.png" alt="Framework" style="max-width: 100%; height: auto;"/>
+
 Framework of our proposed method.
+
+<table>
+    <tr><img src="figs/overview.png" alt="SiamSeg" style="max-width: 100%; height: auto;"/></tr>
+    <tr>
+    <td><img src="figs/different.png" width = "80%" alt="Cross-domain Different"/></td>
+    <td><img src="figs/contrastive_learning.png" width = "100%" alt="Contrastive Learning"/></td>
+    </tr>
+</table>
 
 ## News:
 
