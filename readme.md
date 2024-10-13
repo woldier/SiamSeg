@@ -20,7 +20,7 @@
 
 </div>
 
-<img src="figs/overview.png" alt="Framework" style="max-width: 100%; height: auto;"/>
+<img src="figs/overview.jpg" alt="Framework" style="max-width: 100%; height: auto;"/>
 Framework of our proposed method.
 
 ## News:
