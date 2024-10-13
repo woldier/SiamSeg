@@ -20,10 +20,9 @@
 
 </div>
 <img src="figs/visual_res1.png" alt="Framework" style="max-width: 100%; height: auto;"/>
-Prediction results of our proposed method.
+<div style="display: flex; align-items: center; justify-content: center;"> Prediction results of our proposed method. </div>
 
 
-Framework of our proposed method.
 
 <table>
     <tr><img src="figs/overview.png" alt="SiamSeg" style="max-width: 100%; height: auto;"/></tr>
@@ -32,7 +31,7 @@ Framework of our proposed method.
     <td><img src="figs/contrastive_learning.png" width = "100%" alt="Contrastive Learning"/></td>
     </tr>
 </table>
-
+<div style="display: flex; align-items: center; justify-content: center;"> Network Architectural and Cross-domain Image Different. </div>
 ## News:
 
 ---
