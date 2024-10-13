@@ -27,8 +27,8 @@
 <table>
     <tr><img src="figs/overview.png" alt="SiamSeg" style="max-width: 100%; height: auto;"/></tr>
     <tr>
-    <td><img src="figs/different.png"  alt="Cross-domain Different" style="width: 100%; height: auto;"/></td>
-    <td><img src="figs/contrastive_learning.png" alt="Contrastive Learning" style="width: 100%; height: auto;" /></td>
+    <td style="width: 30%;"><img src="figs/different.png"  alt="Cross-domain Different" style="width: 100%; height: auto;"/></td>
+    <td style="width: 70%;"><img src="figs/contrastive_learning.png" alt="Contrastive Learning" style="width: 100%; height: auto;" /></td>
     </tr>
 </table>
 <div style="display: flex; align-items: center; justify-content: center;"> Network Architectural and Cross-domain Image Different. </div>
