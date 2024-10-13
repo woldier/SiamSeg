@@ -2,7 +2,7 @@ _base_ = [
     '../_base_/models/daformer_sepaspp_mitb5.py',
     '../_base_/uda/dcas.py',
     # dataset
-    '../_base_/datasets/uda_potsdamRGB_2_vaihingenIRRG_512x512.py',
+    '../_base_/datasets/uda_vaihingenIRRG_2_potsdamRGB_512x512.py',
     # optimizer
     '../_base_/schedules/adamw.py',
     # schedule
@@ -10,7 +10,7 @@ _base_ = [
     # runtime
     '../_base_/default_runtime.py'
 ]
-work_dir = r'./result/2024-10-08/{{fileBasenameNoExtension}}'
+work_dir = r'./result/{{fileBasenameNoExtension}}'
 model = dict(
     decode_head=dict(
         num_classes=6,
@@ -23,23 +23,19 @@ model = dict(
 )
 # dataset path set
 # dataset samples_per_gpu 4 -> 1, workers_per_gpu 4 -> 3
-data_root = "/public/home/10201401506/data/RSdata"
+# data_root = "/root/data/RSdata"  # custom dataset path
 data = dict(
     samples_per_gpu=6, workers_per_gpu=3,
-    train=dict(source=dict(data_root=data_root), target=dict(data_root=data_root)),
-    val=dict(data_root=data_root),
-    test=dict(data_root=data_root),
+    # train=dict(source=dict(data_root=data_root), target=dict(data_root=data_root)),
+    # val=dict(data_root=data_root),
+    # test=dict(data_root=data_root),
 )
 
 # Modifications to Basic UDA
 uda = dict(
-    type='ContrastDACS',
+    type='SiamSeg',
     # Increased Alpha
     alpha=0.999,
-    # Thing-Class Feature Distance
-    # imnet_feature_dist_lambda=0.005,
-    # imnet_feature_dist_classes=[6, 7, 11, 12, 13, 14, 15, 16, 17, 18],
-    # imnet_feature_dist_scale_min_ratio=0.75,
     # Pseudo-Label Crop
     # pseudo_weight_ignore_top=15,
     # pseudo_weight_ignore_bottom=120
@@ -65,5 +61,5 @@ lr_config = dict(
     min_lr=0.0,
     by_epoch=False)
 
-checkpoint_config = dict(interval=1000)
-evaluation = dict(interval=1000)
+checkpoint_config = dict(interval=500)
+evaluation = dict(interval=500)

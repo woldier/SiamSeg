@@ -16,18 +16,17 @@ from mmseg.models.utils.sim_aug_transform import tow_transform
 
 
 @UDA.register_module()
-class ContrastDACS(DACS):
+class SiamSeg(DACS):
 
     def __init__(self, **cfg):
         """
-        ContrastDACS
+        SiamSeg
             Parameters:
                 contras_model_cfg (dict):
                     mod (str): 在那些域上做对比学习. 默认为all 即source个target 都会参与对比学习. 支持 ["all", "source", "target"]
                     dim: feature dimension (default: 2048)
                     pred_dim: hidden dimension of the predictor (default: 512)
         """
-        cfg["enable_masking"] = False
         super().__init__(**cfg)
         # build contrast model
         contras_model_cfg = cfg.get("contras_model_cfg", {})
@@ -95,10 +94,6 @@ class ContrastDACS(DACS):
 
         contras_loss.backward()
         log_vars.update({"contras_loss": contras_loss.item()})
-
-        # ==============================Masked Training======================================
-        self._forward_train_mic(img, img_metas, gt_semantic_seg, target_img, target_img_metas, pseudo_label,
-                                pseudo_weight, log_vars)
         # ====================================== vis =======================================
 
         self._show_img(

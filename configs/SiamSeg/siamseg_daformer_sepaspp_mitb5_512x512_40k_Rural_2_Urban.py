@@ -2,7 +2,7 @@ _base_ = [
     '../_base_/models/daformer_sepaspp_mitb5.py',
     '../_base_/uda/dcas.py',
     # dataset
-    '../_base_/datasets/uda_vaihingenIRRG_2_potsdamRGB_512x512.py',
+    '../_base_/datasets/uda_rural_2_urban_512x512.py',
     # optimizer
     '../_base_/schedules/adamw.py',
     # schedule
@@ -10,36 +10,31 @@ _base_ = [
     # runtime
     '../_base_/default_runtime.py'
 ]
-work_dir = r'./result/2024-10-08/{{fileBasenameNoExtension}}'
+work_dir = r'./result/{{fileBasenameNoExtension}}'
 model = dict(
     decode_head=dict(
-        num_classes=6,
+        num_classes=7,
         loss_decode=dict(
-            type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0, class_weight=[1.0, 1.0, 1.0, 1.25, 1.5, 1.5]
-            # 给出class_weight
+            type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0, class_weight=[1.0, 1.0, 1.0, 1.25, 1.5, 1.5, 1.0]  # 给出class_weight
         )
     ),
-    train_cfg=dict(work_dir=work_dir, cmap="isprs")
+    train_cfg=dict(work_dir=work_dir, cmap="loveda")
 )
 # dataset path set
 # dataset samples_per_gpu 4 -> 1, workers_per_gpu 4 -> 3
-data_root = "/public/home/10201401506/data/RSdata"
+#data_root = "/root/RSdata/LoveDA"  custom dataset path
 data = dict(
     samples_per_gpu=6, workers_per_gpu=3,
-    train=dict(source=dict(data_root=data_root), target=dict(data_root=data_root)),
-    val=dict(data_root=data_root),
-    test=dict(data_root=data_root),
+    # train=dict(source=dict(data_root=data_root), target=dict(data_root=data_root), data_strategy='source'),
+    # val=dict(data_root=data_root),
+    # test=dict(data_root=data_root),
 )
 
 # Modifications to Basic UDA
 uda = dict(
-    type='ContrastDACS',
+    type='SiamSeg',
     # Increased Alpha
     alpha=0.999,
-    # Thing-Class Feature Distance
-    # imnet_feature_dist_lambda=0.005,
-    # imnet_feature_dist_classes=[6, 7, 11, 12, 13, 14, 15, 16, 17, 18],
-    # imnet_feature_dist_scale_min_ratio=0.75,
     # Pseudo-Label Crop
     # pseudo_weight_ignore_top=15,
     # pseudo_weight_ignore_bottom=120
@@ -49,7 +44,7 @@ uda = dict(
 optimizer_config = None
 optimizer = dict(
     paramwise_cfg=dict(
-        bypass_duplicate=True,  # 由于contrast model 中也用了backbone 会导致 报错 "ome parameters appear in more than one parameter group"
+        bypass_duplicate=True,
         custom_keys=dict(
             head=dict(lr_mult=10.0),
             pos_block=dict(decay_mult=0.0),
@@ -65,5 +60,5 @@ lr_config = dict(
     min_lr=0.0,
     by_epoch=False)
 
-checkpoint_config = dict(interval=500)
-evaluation = dict(interval=500)
+checkpoint_config = dict(interval=1000)
+evaluation = dict(interval=1000)

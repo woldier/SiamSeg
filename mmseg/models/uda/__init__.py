@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
 from .dacs import DACS
-from .contrast_dacs import ContrastDACS
+from .siam_seg import SiamSeg
 
-__all__ = ["DACS", "ContrastDACS"]
+__all__ = ["DACS", "SiamSeg"]

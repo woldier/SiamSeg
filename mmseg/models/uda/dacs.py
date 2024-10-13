@@ -27,7 +27,6 @@ from mmseg.models import EncoderDecoder
 # from mmseg.models.uda.simsiam import SimSiam
 # from mmseg.models.utils.sim_aug_transform import tow_transform
 
-from mmseg.models.uda.masking_consistency_module import MaskingConsistencyModule
 
 
 @UDA.register_module()
@@ -38,10 +37,6 @@ class DACS(UDADecorator):
         Parameters:
             model (dict): some with UDADecorator.
             max_iters: Maximum number of iterations. 最大迭代次数.
-
-            imnet_feature_dist_lambda (float):  dacs  feature dist. not used here, so we set this to .0.
-            imnet_feature_dist_classes:
-            imnet_feature_dist_scale_min_ratio:
 
             mix (str): mix 的 type 现在仅仅支持class
             blur (bool): 在class mix 时是否使用 blur
@@ -70,12 +65,7 @@ class DACS(UDADecorator):
         super(DACS, self).__init__(**cfg)
         self._init_param(**cfg)
         # build ema teacher
-        # self.ema_model = build_segmentor(ema_cfg)
         self.ema_model = EMATeacher(**cfg)
-
-        self.mic = None
-        if self.enable_masking:
-            self.mic = MaskingConsistencyModule(require_teacher=False, **cfg)
 
         assert self.train_cfg.get("work_dir", None), "work_dir is None! please set uda.train_cfg.work_dir"
         assert self.train_cfg.get("cmap",
@@ -86,8 +76,7 @@ class DACS(UDADecorator):
             self,
             max_iters=None,
             mix=None, blur=None, color_jitter_strength=None, color_jitter_probability=None,
-            debug_img_interval=None, # print_grad_magnitude=None,
-            enable_masking: bool = True,
+            debug_img_interval=None,
             **kwargs
     ):
         self.local_iter = 0
@@ -97,13 +86,10 @@ class DACS(UDADecorator):
         self.color_jitter_s = color_jitter_strength
         self.color_jitter_p = color_jitter_probability
         self.debug_img_interval = debug_img_interval
-        # self.print_grad_magnitude = print_grad_magnitude
+
         assert self.mix == 'class'
 
-        # self.debug_fdist_mask = None
-        # self.debug_gt_rescale = None
 
-        self.enable_masking = enable_masking
 
     def get_ema_model(self):
         return get_module(self.ema_model)
@@ -204,9 +190,6 @@ class DACS(UDADecorator):
 
         # ============================Train on mixed images===================================
         self._forward_train_mix_img(mixed_img, img_metas, mixed_lbl, mixed_seg_weight, log_vars)
-        # ==============================Masked Training======================================
-        self._forward_train_mic(img, img_metas, gt_semantic_seg, target_img, target_img_metas, pseudo_label,
-                                pseudo_weight, log_vars)
         # ====================================== vis =======================================
 
         self._show_img(
@@ -214,23 +197,11 @@ class DACS(UDADecorator):
             target_img, pseudo_label, mixed_seg_weight,
             mixed_img, mixed_lbl, mix_masks,
             batch_size, means, stds,
-            # q=q, k=k
         )
         self.local_iter += 1
 
         return log_vars
 
-    def _forward_train_mic(self, img, img_metas, gt_semantic_seg, target_img, target_img_metas, pseudo_label,
-                           pseudo_weight, log_vars):
-        if self.enable_masking:
-            masked_loss = self.mic(self.model, img, img_metas,
-                                   gt_semantic_seg, target_img,
-                                   target_img_metas, None,
-                                   pseudo_label, pseudo_weight)
-            masked_loss = add_prefix(masked_loss, 'masked')
-            masked_loss, masked_log_vars = self._parse_losses(masked_loss)
-            log_vars.update(masked_log_vars)
-            masked_loss.backward()
 
     def _forward_train_mix_img(self, mixed_img, img_metas, mixed_lbl, mixed_seg_weight, log_vars):
         # mix_losses = self.get_model().forward_train(
@@ -283,8 +254,6 @@ class DACS(UDADecorator):
         dev = img.device
         # Init/update ema model
         self.update_weights(self.local_iter)
-        if self.mic is not None:
-            self.mic.update_weights(self.get_model(), self.local_iter)
         means, stds = get_mean_std(img_metas, dev)
         strong_parameters = self._prepare_strong_transform_param(means, stds)
         return batch_size, dev, log_vars, means, stds, strong_parameters
