@@ -11,6 +11,7 @@
   <p align="center">
     <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.xxxx.xxx-B31B1B.svg'></a>
     <img alt="Static Badge" src="https://img.shields.io/badge/python-3.8-green">
+    <img alt="Static Badge" src="https://img.shields.io/badge/mmcv+mmseg-v1.5.0+v0.21.0-blue">
   </p>
 </p>
 
@@ -18,7 +19,6 @@
 
 <br/>
 
-</div>
 <img src="figs/visual_res1.png" alt="Framework" style="max-width: 100%; height: auto;"/>
 <div style="display: flex; align-items: center; justify-content: center;"> Prediction results of our proposed method. </div>
 
@@ -31,6 +31,10 @@
 </div>
 <div style="display: flex; align-items: center; justify-content: center;"> Network Architectural and Cross-domain Image Different. </div>
 
+
+</div>
+
+
 ## News:
 
 ---
@@ -41,8 +45,9 @@
 [//]: # (- [2024/08/01] Update scripts for training and inference in different tasks.)
 
 [//]: # (- [2024/05/19] Update the dataset loading scripts.)
+- [2024/10/16] The [arxiv](https://arxiv.org/abs/2403.07721) paper is available.
 - [2024/10/13] Update the code and scripts.
-- [2024/10/13] The [arxiv](https://arxiv.org/abs/2403.07721) paper is available.
+
 
 
 
@@ -81,6 +86,45 @@ https://mmcv.readthedocs.io/zh-cn/v1.5.0/get_started/installation.html
 
 ---
 我们选择 Postsdam, Vaihingen 和 LoveDA 作为基准数据集, 并创建了 train, val, test 列表供研究人员参考.
+
+### 2.1 文件的下载
+
+#### ISPRS Potsdam
+The [Potsdam](https://www2.isprs.org/commissions/comm2/wg4/benchmark/2d-sem-label-potsdam/)
+dataset is for urban semantic segmentation used in the 2D Semantic Labeling Contest - Potsdam.
+
+The dataset can be requested at the challenge [homepage](https://www2.isprs.org/commissions/comm2/wg4/benchmark/data-request-form/).
+The '2_Ortho_RGB.zip', '3_Ortho_IRRG.zip' and '5_Labels_all_noBoundary.zip' are required.
+
+#### ISPRS Vaihingen
+
+The [Vaihingen](https://www2.isprs.org/commissions/comm2/wg4/benchmark/2d-sem-label-vaihingen/)
+dataset is for urban semantic segmentation used in the 2D Semantic Labeling Contest - Vaihingen.
+
+The dataset can be requested at the challenge [homepage](https://www2.isprs.org/commissions/comm2/wg4/benchmark/data-request-form/).
+The 'ISPRS_semantic_labeling_Vaihingen.zip' and 'ISPRS_semantic_labeling_Vaihingen_ground_truth_eroded_COMPLETE.zip' are required.
+
+#### LoveDA
+
+The data could be downloaded from Google Drive [here](https://drive.google.com/drive/folders/1ibYV0qwn4yuuh068Rnc-w4tPi0U0c-ti?usp=sharing).
+
+Or it can be downloaded from [zenodo](https://zenodo.org/record/5706578#.YZvN7SYRXdF), you should run the following command:
+
+```shell
+
+cd /{your_project_base_path}/SiamSeg/data/LoveDA
+
+# Download Train.zip
+wget https://zenodo.org/record/5706578/files/Train.zip
+# Download Val.zip
+wget https://zenodo.org/record/5706578/files/Val.zip
+# Download Test.zip
+wget https://zenodo.org/record/5706578/files/Test.zip
+```
+
+
+
+### 2.2 数据集预处理
 将下载的文件放入对应的路径中
 格式如下
 ```text
