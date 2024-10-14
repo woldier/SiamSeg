@@ -12,8 +12,9 @@
     <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.xxxx.xxx-B31B1B.svg?logo=arXiv&logoColor=B31B1B'></a>
     <img alt="Static Badge" src="https://img.shields.io/badge/python-v3.8-green?logo=python">
     <img alt="Static Badge" src="https://img.shields.io/badge/torch-v1.10.2-B31B1B?logo=pytorch">
-    <img alt="Static Badge" src="https://img.shields.io/badge/torchvision-v0.11.3-B31B1B?logo=pytorch">
     <img alt="Static Badge" src="https://img.shields.io/badge/mmcv-v1.5.0-blue">
+    <img alt="Static Badge" src="https://img.shields.io/badge/torchvision-v0.11.3-B31B1B?logo=pytorch">
+    
   </p>
 </p>
 
@@ -78,11 +79,15 @@ pip install mmcv-full==1.5.0 -f https://download.openmmlab.com/mmcv/dist/cu111/t
 pip install kornia matplotlib prettytable timm yapf==0.40.1
 ```
 安装参考文档refer:
-```text
-https://blog.csdn.net/shiwanghualuo/article/details/122860521
-https://github.com/pytorch/vision#installation
-https://mmcv.readthedocs.io/zh-cn/v1.5.0/get_started/installation.html
-```
+
+torch与torchvision版本对照
+
+[![Official Repo](https://img.shields.io/badge/Pytorch-vision_refer-EE4C2C?logo=pytorch)](https://github.com/pytorch/vision#installation)
+[![CSDN](https://img.shields.io/badge/CSDN-vision_refer-FC5531?logo=csdn)](https://blog.csdn.net/shiwanghualuo/article/details/122860521)
+
+mmcv的版本对照
+
+[![MMCV](https://img.shields.io/badge/mmcv-vision_refer-blue)](https://mmcv.readthedocs.io/zh-cn/v1.5.0/get_started/installation.html)
 
 
 ## 2.数据集的准备
