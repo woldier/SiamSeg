@@ -9,7 +9,7 @@
 <p align="center">
   <a href="#">
   <br align="center">
-    <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.xxxx.xxx-B31B1B.svg?logo=arXiv&logoColor=B31B1B'></a>
+    <a href='#'><img src='http://img.shields.io/badge/Paper-arxiv.xxxx.xxx-B31B1B.svg?logo=arXiv&logoColor=B31B1B'></a>
     <img alt="Static Badge" src="https://img.shields.io/badge/python-v3.8-green?logo=python">
     <img alt="Static Badge" src="https://img.shields.io/badge/torch-v1.10.2-B31B1B?logo=pytorch">
     <img alt="Static Badge" src="https://img.shields.io/badge/mmcv-v1.5.0-blue">
@@ -55,7 +55,7 @@
 [//]: # (- [2024/08/01] Update scripts for training and inference in different tasks.)
 
 [//]: # (- [2024/05/19] Update the dataset loading scripts.)
-- [2024/10/16] The [arxiv](https://arxiv.org/abs/2403.07721) paper is available.
+- [2024/10/16] The [arxiv](#) paper is available.
 - [2024/10/13] Update the code and scripts.
 
 
