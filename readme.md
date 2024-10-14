@@ -9,9 +9,10 @@
 <p align="center">
   <a href="#">
   <p align="center">
-    <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.xxxx.xxx-B31B1B.svg'></a>
-    <img alt="Static Badge" src="https://img.shields.io/badge/python-3.8-green">
-    <img alt="Static Badge" src="https://img.shields.io/badge/mmcv+mmseg-v1.5.0+v0.21.0-blue">
+    <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.xxxx.xxx-B31B1B.svg?logo=arXiv&logoColor=B31B1B'></a>
+    <img alt="Static Badge" src="https://img.shields.io/badge/python-v3.8-green?logo=python">
+    <img alt="Static Badge" src="https://img.shields.io/badge/torch-v1.11.3-B31B1B?logo=pytorch">
+    <img alt="Static Badge" src="https://img.shields.io/badge/mmcv-v1.5.0-blue?logo=">
   </p>
 </p>
 
@@ -21,7 +22,8 @@
 
 <img src="figs/visual_res1.png" alt="Framework" style="max-width: 100%; height: auto;"/>
 <div style="display: flex; align-items: center; justify-content: center;"> Prediction results of our proposed method. </div>
-
+<br/>
+<br/>
 
 
 <img src="figs/overview.png" alt="SiamSeg" style="max-width: 100%; height: auto;"/>
