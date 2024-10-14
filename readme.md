@@ -8,14 +8,20 @@
 
 <p align="center">
   <a href="#">
-  <p align="center">
+  <br align="center">
     <a href='https://arxiv.org/pdf/2403.07721'><img src='http://img.shields.io/badge/Paper-arxiv.xxxx.xxx-B31B1B.svg?logo=arXiv&logoColor=B31B1B'></a>
     <img alt="Static Badge" src="https://img.shields.io/badge/python-v3.8-green?logo=python">
     <img alt="Static Badge" src="https://img.shields.io/badge/torch-v1.10.2-B31B1B?logo=pytorch">
     <img alt="Static Badge" src="https://img.shields.io/badge/mmcv-v1.5.0-blue">
     <img alt="Static Badge" src="https://img.shields.io/badge/torchvision-v0.11.3-B31B1B?logo=pytorch">
-    
+    </br>
+    <img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues/woldier/SiamSeg">
+    <img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues-closed/woldier/SiamSeg?color=ab7df8">
+    <img alt="GitHub forks" src="https://img.shields.io/github/forks/woldier/SiamSeg?style=flat&color=red">
+    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/woldier/SiamSeg?style=flat&color=af2626">
   </p>
+
+    
 </p>
 
 </div>
