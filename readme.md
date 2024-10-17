@@ -101,7 +101,7 @@ Version relationship of mmcv and torch.
 ---
 We selected Postsdam, Vaihingen and LoveDA as benchmark datasets and created train, val, test lists for researchers.
 
-### 2.1 文件的下载
+### 2.1 Download of datasets
 
 #### ISPRS Potsdam
 The [Potsdam](https://www2.isprs.org/commissions/comm2/wg4/benchmark/2d-sem-label-potsdam/)
