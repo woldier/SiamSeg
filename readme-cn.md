@@ -59,19 +59,17 @@
 
 
 
-## 1. Creating Virtual Environment
+## 1. 创建虚拟环境
 
 ---
-Install the necessary dependencies:
+安装必要的依赖torch=1.10.2,torchvision=0.11.3 和 mmcv-full=1.5.0
 
-torch=1.10.2,torchvision=0.11.3 and mmcv-full=1.5.0.
-
-Recommended use of conda virtual environments
+推荐使用conda虚拟环境
 ```shell
 conda create -n SiamSeg python==3.8 -y
 conda activate SiamSeg 
 ````
-pip command to install torch && torchvision && mmcv-full
+pip 命令安装torch && torchvision && mmcv-full
 ```shell
 pip install torch==1.10.2+cu111 torchvision==0.11.3+cu111 -f https://download.pytorch.org/whl/torch_stable.html 
 pip install mmcv-full==1.5.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.10.0/index.html
@@ -84,22 +82,22 @@ pip install torchvision==0.11.3+cu111 -f https://download.pytorch.org/whl/torch_
 pip install mmcv-full==1.5.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.10.0/index.html
 pip install kornia matplotlib prettytable timm yapf==0.40.1
 ```
-Installation of the reference document refer:
+安装参考文档refer:
 
-Torch and torchvision versions relationship.
+torch与torchvision版本对照
 
 [![Official Repo](https://img.shields.io/badge/Pytorch-vision_refer-EE4C2C?logo=pytorch)](https://github.com/pytorch/vision#installation)
 [![CSDN](https://img.shields.io/badge/CSDN-vision_refer-FC5531?logo=csdn)](https://blog.csdn.net/shiwanghualuo/article/details/122860521)
 
-Version relationship of mmcv and torch.
+mmcv的版本对照
 
 [![MMCV](https://img.shields.io/badge/mmcv-vision_refer-blue)](https://mmcv.readthedocs.io/zh-cn/v1.5.0/get_started/installation.html)
 
 
-## 2.Preparation of data sets
+## 2.数据集的准备
 
 ---
-We selected Postsdam, Vaihingen and LoveDA as benchmark datasets and created train, val, test lists for researchers.
+我们选择 Postsdam, Vaihingen 和 LoveDA 作为基准数据集, 并创建了 train, val, test 列表供研究人员参考.
 
 ### 2.1 文件的下载
 
@@ -138,9 +136,9 @@ wget https://zenodo.org/record/5706578/files/Test.zip
 
 
 
-### 2.2 Data set preprocessing
-Place the downloaded file in the corresponding path
-The format is as follows
+### 2.2 数据集预处理
+将下载的文件放入对应的路径中
+格式如下
 ```text
 SiamSeg/
 ├── data/
@@ -178,16 +176,16 @@ unzip Train.zip, Val.zip, Test.zip
 ## 3.Training 
 
 ---
-### 3.1 Preparation of pre-trained models
+### 3.1 预训练模型的准备
 
 mit_b5.pth :
 We provide a script [`mit2mmseg.py`](./tools/model_converters/mit2mmseg.py) in the tools directory to convert the key of models from [the official repo](https://github.com/NVlabs/SegFormer) to MMSegmentation style.
 ```shell
 python tools/model_converters/mit2mmseg.py ${PRETRAIN_PATH} ./pretrained
 ```
-Or you can download it from [google drive](https://drive.google.com/drive/folders/1cmKZgU8Ktg-v-jiwldEc6IghxVSNcFqk?usp=sharing).
+或者可以从 [google drive](https://drive.google.com/drive/folders/1cmKZgU8Ktg-v-jiwldEc6IghxVSNcFqk?usp=sharing) 下载
 
-The structure of the file is as follows
+文件的结构如下
 ```text
 SiamSeg/
 ├── pretrained/
@@ -199,7 +197,7 @@ SiamSeg/
 ### 3.2 Potsdam IRRG to Vaihingen IRRG
 > tips
 > 
-> When using distributed training scripts under linux, you need to set the permissions of the training scripts due to the file permissions.
+> 在linux下使用分布式训练脚本时, 由于文件权限的问题, 需要设置下训练脚本的权限
 > ```shell
 > cd SiamSeg
 > chmod 777 ./tools/dist_train.sh
@@ -209,9 +207,9 @@ SiamSeg/
 
 ```shell
 # Potsdam IRRG to Vaihingen IRRG
-# CUDA_VISIBLE_DEVICES Visible GPU ids are 0-3 Total four GPU processors
-# PORT Sets the communication port of the master for distributed training.
-# The last 4 indicates the total number of GPUs used
+# CUDA_VISIBLE_DEVICES 可见的GPU id 是  0-3 总计四个GPU处理器
+# PORT 设置分布式训练时master的通信端口
+# 最后的4表示使用的GPU总数
 CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
  ./tools/dist_train.sh \
  configs/SiamSeg/siamseg_daformer_sepaspp_mitb5_512x512_40k_PotsdamIRRG_2_VaihingenIRRG.py 4
@@ -221,10 +219,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
 ### 3.3 Potsdam RGB to Vaihingen IRRG
 
 ```shell
-# Potsdam RGB to Vaihingen IRRG
-# CUDA_VISIBLE_DEVICES Visible GPU ids are 0-3 Total four GPU processors
-# PORT Sets the communication port of the master for distributed training.
-# The last 4 indicates the total number of GPUs used
+# Potsdam IRRG to Vaihingen IRRG
+# CUDA_VISIBLE_DEVICES 可见的GPU id 是  0-3 总计四个GPU处理器
+# PORT 设置分布式训练时master的通信端口
+# 最后的4表示使用的GPU总数
 CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
  ./tools/dist_train.sh \
  configs/SiamSeg/siamseg_daformer_sepaspp_mitb5_512x512_40k_PotsdamRGB_2_VaihingenIRRG.py 4
@@ -233,9 +231,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
 ### 3.4 Vaihingen IRRG to Potsdam IRRG
 ```shell
 # Potsdam IRRG to Vaihingen IRRG
-# CUDA_VISIBLE_DEVICES Visible GPU ids are 0-3 Total four GPU processors
-# PORT Sets the communication port of the master for distributed training.
-# The last 4 indicates the total number of GPUs used
+# CUDA_VISIBLE_DEVICES 可见的GPU id 是  0-3 总计四个GPU处理器
+# PORT 设置分布式训练时master的通信端口
+# 最后的4表示使用的GPU总数
 CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
  ./tools/dist_train.sh \
  configs/SiamSeg/siamseg_daformer_sepaspp_mitb5_512x512_40k_VaihingenIRRG_2_PotsdamIRRG.py 4
@@ -244,9 +242,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
 ### 3.5 Vaihingen IRRG to Potsdam RGB
 ```shell
 # Potsdam IRRG to Vaihingen IRRG
-# CUDA_VISIBLE_DEVICES Visible GPU ids are 0-3 Total four GPU processors
-# PORT Sets the communication port of the master for distributed training.
-# The last 4 indicates the total number of GPUs used
+# CUDA_VISIBLE_DEVICES 可见的GPU id 是  0-3 总计四个GPU处理器
+# PORT 设置分布式训练时master的通信端口
+# 最后的4表示使用的GPU总数
 CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
  ./tools/dist_train.sh \
  configs/SiamSeg/siamseg_daformer_sepaspp_mitb5_512x512_40k_VaihingenIRRG_2_PotsdamRGB.py 4
@@ -255,9 +253,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
 ### 3.6 LoveDA Rural to Urban
 ```shell
 # Potsdam IRRG to Vaihingen IRRG
-# CUDA_VISIBLE_DEVICES Visible GPU ids are 0-3 Total four GPU processors
-# PORT Sets the communication port of the master for distributed training.
-# The last 4 indicates the total number of GPUs used
+# CUDA_VISIBLE_DEVICES 可见的GPU id 是  0-3 总计四个GPU处理器
+# PORT 设置分布式训练时master的通信端口
+# 最后的4表示使用的GPU总数
 CUDA_VISIBLE_DEVICES=0,1,2,3  PORT=10985 \
  ./tools/dist_train.sh \
  configs/SiamSeg/siamseg_daformer_sepaspp_mitb5_512x512_40k_Rural_2_Urban.py 4
