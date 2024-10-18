@@ -55,7 +55,8 @@
 [//]: # (- [2024/08/01] Update scripts for training and inference in different tasks.)
 
 [//]: # (- [2024/05/19] Update the dataset loading scripts.)
-- [2024/10/18] The [arxiv](https://arxiv.org/abs/2410.13471) paper is available.
+- [2024/10/18] This work was submitted  to **IEEE TGRS**.
+- [2024/10/17] The [arxiv](https://arxiv.org/abs/2410.13471) paper is available.
 - [2024/10/13] Update the code and scripts.
 
 
