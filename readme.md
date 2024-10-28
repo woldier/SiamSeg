@@ -36,8 +36,9 @@
 
 <img src="figs/overview.png" alt="SiamSeg" style="max-width: 100%; height: auto;"/>
 <div style="display: flex; align-items: center; justify-content: center;">
-    <img src="figs/different.png" alt="Cross-domain Different" style="width:35%; height: auto;"/>
     <img src="figs/contrastive_learning.png" alt="Contrastive Learning" style="width:64%; height: auto;"/>
+    <div style="width:1%; height: auto;"></div>
+<img src="figs/different.png" alt="Cross-domain Different" style="width:35%; height: auto;"/>
 </div>
 <div style="display: flex; align-items: center; justify-content: center;"> Network Architectural and Cross-domain Image Different. </div>
 
