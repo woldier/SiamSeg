@@ -48,16 +48,16 @@
 ## News:
 
 ---
-[//]: # (- [2024/09/26] Our paper is accepted to **NeurIPS 2024**.)
+[//]: # (- [2024/09/26]  Our paper is accepted to **NeurIPS 2024**.)
 
-[//]: # (- [2024/09/25] We have updated the [arxiv]&#40;https://arxiv.org/abs/2403.07721&#41; paper.)
+[//]: # (- [2024/09/25] ✨✨ We have updated the [arxiv]&#40;https://arxiv.org/abs/2403.07721&#41; paper.)
 
 [//]: # (- [2024/08/01] Update scripts for training and inference in different tasks.)
 
 [//]: # (- [2024/05/19] Update the dataset loading scripts.)
-- [2024/10/18] This work was submitted  to **IEEE TGRS**.
-- [2024/10/17] The [arxiv](https://arxiv.org/abs/2410.13471) paper is available.
-- [2024/10/13] Update the code and scripts.
+- [2024/10/18] ✨✨This work was submitted  to **IEEE TGRS**.
+- [2024/10/17] ✨✨The [arxiv](https://arxiv.org/abs/2410.13471) paper is available.
+- [2024/10/13] 🔥🔥Update the code and scripts.
 
 
 
