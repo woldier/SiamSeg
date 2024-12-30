@@ -102,7 +102,7 @@ def get_class_masks(labels, ignore_index=255):
     """
     class_masks = []
     for label in labels:
-        classes = torch.unique(labels)
+        classes = torch.unique(label)
         classes = classes[classes != ignore_index]
         nclasses = classes.shape[0]
         class_choice = np.random.choice(
